@@ -37,8 +37,8 @@ function character:joystick_move(map)
   elseif love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_RIGHT) then x, y = 1, 0
   end
   local dx, dy = self:get_position()
-  dx, dy = dx + x, dy + y - 3
-  if map[dx][dy] == '#' then return end
+  dx, dy = dx + x, dy + y
+  if map[dx] and map[dx][dy] == '#' then return end
   if not self:is_moving() then
     local space_empty = true
     if space_empty then
