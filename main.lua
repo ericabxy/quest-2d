@@ -2,8 +2,10 @@ local character = require('src.character')
 local tilemap = require('src.tilemap')
 local rom_level0 = require('src.rom_level0')
 local rom_basictiles = require('src.rom_basictiles')
-local rom_board001 = dofile('001')
+local rom_board001 = dofile('level0/001')
 local rom_bitmap_font_futuristic = require('src.rom_bitmap_font_futuristic')
+local bgm = love.audio.newSource('share/avgvsta_jrpg_opening.wav', 'static')
+bgm:setLooping(true)
 
 local board_x = 7
 local board_y = 7
@@ -39,6 +41,9 @@ function love.update(dt)
   elseif player0.y == 176 then
     player0.y = 0
     board_y = (board_y + 1) % 8
+  end
+  if love.timer.getTime() > 5 and not bgm:isPlaying() then
+    love.audio.play(bgm)
   end
 end
 
