@@ -1,15 +1,17 @@
 return {
   texture = love.graphics.newImage('share/basictiles.png'),
   quads = {
-    love.graphics.newQuad(0, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(16, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(32, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(48, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(64, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(80, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(96, 0, 16, 16, 128, 240),
-    love.graphics.newQuad(112, 0, 16, 16, 128, 240),
-    -- Second row.
+    {
+      love.graphics.newQuad(0, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(16, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(32, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(48, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(64, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(80, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(96, 0, 16, 16, 128, 240),
+      love.graphics.newQuad(112, 0, 16, 16, 128, 240),
+    },
+    {  -- Second row.
     love.graphics.newQuad(0, 16, 16, 16, 128, 240),
     love.graphics.newQuad(16, 16, 16, 16, 128, 240),
     love.graphics.newQuad(32, 16, 16, 16, 128, 240),
@@ -18,7 +20,8 @@ return {
     love.graphics.newQuad(80, 16, 16, 16, 128, 240),
     love.graphics.newQuad(96, 16, 16, 16, 128, 240),
     love.graphics.newQuad(112, 16, 16, 16, 128, 240),
-    -- Third row.
+    },
+    {  -- Third row.
     love.graphics.newQuad(0, 32, 16, 16, 128, 240),
     love.graphics.newQuad(16, 32, 16, 16, 128, 240),
     love.graphics.newQuad(32, 32, 16, 16, 128, 240),
@@ -27,7 +30,8 @@ return {
     love.graphics.newQuad(80, 32, 16, 16, 128, 240),
     love.graphics.newQuad(96, 32, 16, 16, 128, 240),
     love.graphics.newQuad(112, 32, 16, 16, 128, 240),
-    -- Fourth row.
+    },
+    {  -- Fourth row.
     love.graphics.newQuad(0, 48, 16, 16, 128, 240),
     love.graphics.newQuad(16, 48, 16, 16, 128, 240),
     love.graphics.newQuad(32, 48, 16, 16, 128, 240),
@@ -36,7 +40,8 @@ return {
     love.graphics.newQuad(80, 48, 16, 16, 128, 240),
     love.graphics.newQuad(96, 48, 16, 16, 128, 240),
     love.graphics.newQuad(112, 48, 16, 16, 128, 240),
-    -- Fifth row.
+    },
+    {  -- Fifth row.
     love.graphics.newQuad(0, 64, 16, 16, 128, 240),
     love.graphics.newQuad(16, 64, 16, 16, 128, 240),
     love.graphics.newQuad(32, 64, 16, 16, 128, 240),
@@ -45,7 +50,8 @@ return {
     love.graphics.newQuad(80, 64, 16, 16, 128, 240),
     love.graphics.newQuad(96, 64, 16, 16, 128, 240),
     love.graphics.newQuad(112, 64, 16, 16, 128, 240),
-    -- Sixth row.
+    },
+    {  -- Sixth row.
     love.graphics.newQuad(0, 80, 16, 16, 128, 240),
     love.graphics.newQuad(16, 80, 16, 16, 128, 240),
     love.graphics.newQuad(32, 80, 16, 16, 128, 240),
@@ -54,5 +60,15 @@ return {
     love.graphics.newQuad(80, 80, 16, 16, 128, 240),
     love.graphics.newQuad(96, 80, 16, 16, 128, 240),
     love.graphics.newQuad(112, 80, 16, 16, 128, 240),
+    },
+    {  -- Seventh row.
+    love.graphics.newQuad(0, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(16, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(32, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(48, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(64, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(80, 96, 16, 16, 128, 240),
+    love.graphics.newQuad(96, 96, 16, 16, 128, 240),
+    }
   }
 }

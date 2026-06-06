@@ -13,14 +13,20 @@ player0 = character:new{ x = 128, y = 128 }
 tilemap0 = tilemap:new{
   texture = rom_basictiles.texture,
   ['.'] = love.graphics.newQuad(0, 224, 16, 16, 128, 240),
-  ['~'] = rom_basictiles.quads[12],
-  ['#'] = rom_basictiles.quads[39],
+  ['Y'] = rom_basictiles.quads[2][3],
+  ['~'] = rom_basictiles.quads[2][4],
+  ['#'] = rom_basictiles.quads[5][7],
+  ['D'] = rom_basictiles.quads[7][1],
+  ['M'] = rom_basictiles.quads[7][3],
 }
 tilemap1 = tilemap:new{
   texture = rom_basictiles.texture,
   ['.'] = love.graphics.newQuad(0, 224, 16, 16, 128, 240),
-  ['~'] = rom_basictiles.quads[12],
-  ['#'] = rom_basictiles.quads[39],
+  ['Y'] = rom_basictiles.quads[2][3],
+  ['~'] = rom_basictiles.quads[2][4],
+  ['#'] = rom_basictiles.quads[5][7],
+  ['D'] = rom_basictiles.quads[7][1],
+  ['M'] = rom_basictiles.quads[7][3],
 }
 tilemap0:add_strings(unpack(rom_board001))
 tilemap1:add_strings(unpack(rom_board001))
@@ -57,10 +63,4 @@ function love.draw()
   love.graphics.rectangle('fill', 32, 224, 256, 48)
   love.graphics.rectangle('fill', 0, 48, 32, 176)
   love.graphics.rectangle('fill', 288, 48, 32, 176)
-  love.graphics.setColor(85, 85, 85)
-  love.graphics.rectangle('fill', 32, 0, 96, 48)
-  love.graphics.setColor(170, 255, 170)
-  if math.floor(love.timer.getTime() * 5) % 2 == 0 then
-    love.graphics.rectangle('fill', 33 + 6 * board_x, 1 + 6 * board_y, 4, 4)
-  end
 end
