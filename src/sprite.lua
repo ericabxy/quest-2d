@@ -6,9 +6,9 @@ local sprite = {
   y = 0
 }
 
-function sprite:paint(x, y)
-  x, y = x or 0, y or 0
-  love.graphics.draw(self.texture, self.quad, math.floor(self.ox + self.x + x), math.floor(self.oy + self.y + y))
+function sprite:draw(xoffset, yoffset)
+  xoffset, yoffset = xoffset or 0, yoffset or 0
+  love.graphics.draw(self.texture, self.quad, math.floor(self.ox + self.x + xoffset), math.floor(self.oy + self.y + yoffset))
   --love.graphics.rectangle('line', self.x + x - 6, self.y + y - 6, 13, 13)
 end
 

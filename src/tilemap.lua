@@ -4,17 +4,23 @@ local tilemap = {
 }
 
 function tilemap:add_string(str)
-  local width = #(str:match("[^\n]+"))
+  self.width = #(str:match("[^\n]+"))
+  self.height = 0
   local map = {}
-  for x = 1, width,1 do map[x] = {} end  
+  for x = 1, self.width, 1 do map[x] = {} end  
   local rowIndex, columnIndex = 1, 1
   for row in str:gmatch("[^\n]+") do
-    assert(#row == width, 'Map is not aligned: width of row ' .. tostring(rowIndex) .. ' should be ' .. tostring(width) .. ', but it is ' .. tostring(#row))
+    assert(#row == self.width,
+      'Map is not aligned: width of row ' .. tostring(rowIndex) ..
+      ' should be ' .. tostring(self.width) ..
+      ', but it is ' .. tostring(#row)
+    )
     columnIndex = 1
     for character in row:gmatch(".") do
       map[columnIndex][rowIndex] = character
       columnIndex = columnIndex + 1
     end
+    self.height = self.height + 1
     rowIndex=rowIndex+1
   end
   table.insert(self.maps, map)
