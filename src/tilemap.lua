@@ -1,57 +1,55 @@
+local tile = require('src.tile')
+
 local tilemap = {
   texture = false,  -- Must be initialized with a texture in order to work.
-  maps = {},
+  quads = false,  -- Must be initialized.
+  width = 20,
+  height = 15,
+  map = {},
+  tiles = {}
 }
 
-function tilemap:add_string(str)
-  self.width = #(str:match("[^\n]+"))
+function tilemap:draw(xoffset, yoffset)
+  xoffset, yoffset = xoffset or 0, yoffset or 0
+  for column_i, column in ipairs(self.map) do
+    for row_i, t in ipairs(column) do
+      local x, y = (column_i - 1) * t.width, (row_i - 1) * t.height
+      love.graphics.draw(t.texture, t.quad, x - xoffset, y - yoffset)
+    end
+  end
+end
+
+function tilemap:is_solid_at(x, y)
+  x, y = math.floor(x), math.floor(y)
+  if self.map[x] and self.map[x][y] then return self.map[x][y].solid end
+  return true
+end
+
+function tilemap:load_string(s)
+  self.width = #(s:match("[^\n]+"))
   self.height = 0
-  local map = {}
-  for x = 1, self.width, 1 do map[x] = {} end  
-  local rowIndex, columnIndex = 1, 1
-  for row in str:gmatch("[^\n]+") do
+  self.map = {}
+  for x = 1, self.width, 1 do self.map[x] = {} end  
+  local row_i, col_i = 1, 1
+  for row in s:gmatch("[^\n]+") do
     assert(#row == self.width,
-      'Map is not aligned: width of row ' .. tostring(rowIndex) ..
+      'Map is not aligned: width of row ' .. tostring(row_i) ..
       ' should be ' .. tostring(self.width) ..
       ', but it is ' .. tostring(#row)
     )
-    columnIndex = 1
-    for character in row:gmatch(".") do
-      map[columnIndex][rowIndex] = character
-      columnIndex = columnIndex + 1
+    col_i = 1
+    for tile_number in row:gmatch(".") do
+      local t = self.tiles['.']:new()
+      if self.tiles[tile_number] then t = self.tiles[tile_number]:new() end
+      self.map[col_i][row_i] = t
+      col_i = col_i + 1
     end
     self.height = self.height + 1
-    rowIndex=rowIndex+1
-  end
-  table.insert(self.maps, map)
-end
-
-function tilemap:add_strings(...)
-  for _, str in ipairs({...}) do
-    self:add_string(str)
+    row_i = row_i + 1
   end
 end
 
-function tilemap:get_char_at(x, y)
-  local chars = {}
-  for _, map in ipairs(self.maps) do
-    table.insert(chars, map[x][y])
-  end
-  return unpack(chars)
-end
-
-function tilemap:paint(dx, dy)
-  dx, dy = dx or 0, dy or 0
-  for mi, map in ipairs(self.maps) do
-    for ci, col in ipairs(map) do
-      for ri, char in ipairs(col) do
-        local x, y = (ci - 1) * 16, (ri - 1) * 16
-        love.graphics.draw(self.texture, self[char], dx + x, dy + y)
-      end
-    end
-  end
-end
-
+-- Constructor.
 function tilemap:new(o)
   o = o or {}
   setmetatable(o, self)

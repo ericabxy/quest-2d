@@ -40,7 +40,7 @@ function character:joystick_move(map)
   end
   local dx, dy = self:get_position()
   dx, dy = dx + x, dy + y
-  if map[dx] and map[dx][dy] == '#' then return end
+  if map:is_solid_at(dx, dy) then return end
   if not self:is_moving() then
     local space_empty = true
     if space_empty then
