@@ -19,6 +19,11 @@ function tilemap:draw(xoffset, yoffset)
   end
 end
 
+function tilemap:get_tile_at(x, y)
+  x, y = math.floor(x), math.floor(y)
+  if self.map[x] and self.map[x][y] then return self.map[x][y] end
+end
+
 function tilemap:is_solid_at(x, y)
   x, y = math.floor(x), math.floor(y)
   if self.map[x] and self.map[x][y] then return self.map[x][y].solid end

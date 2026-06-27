@@ -56,7 +56,7 @@ function character:start_moving(x, y)
   end
 end
 
-function character:move(dt)
+function character:move(dt, map)
   local frames_per_second = 7
   local number_of_frames = 4
   if self.dx ~= 0 then
@@ -66,12 +66,12 @@ function character:move(dt)
       self.x = self.x - self.width
       self.ox = 0
       self.dx = 0
-      return true
+      return map:get_tile_at(math.floor(self.x / 16), math.floor(self.y / 16))
     elseif self.ox > self.width then
       self.x = self.x + self.width
       self.ox = 0
       self.dx = 0
-      return true
+      return map:get_tile_at(math.floor(self.x / 16), math.floor(self.y / 16))
     end
   end
   if self.dy ~= 0 then
@@ -81,12 +81,12 @@ function character:move(dt)
       self.y = self.y - self.height
       self.oy = 0
       self.dy = 0
-      return true
+      return map:get_tile_at(math.floor(self.x / 16), math.floor(self.y / 16))
     elseif self.oy > self.height then
       self.y = self.y + self.height
       self.oy = 0
       self.dy = 0
-      return true
+      return map:get_tile_at(math.floor(self.x / 16), math.floor(self.y / 16))
     end
   end
 end

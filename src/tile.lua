@@ -5,7 +5,7 @@ local tile = rectangle:new{
   quad = nil,  -- Must be initialized.
   width = 16,
   height = 16,
-  solid = false
+  solid = false,
 }
 
 function tile:draw(xoffset, yoffset)
@@ -13,6 +13,14 @@ function tile:draw(xoffset, yoffset)
   local x = math.floor(self.x * self.width) - xoffset
   local x = math.floor(self.y * self.height) - yoffset
   love.graphics.draw(self.texture, self.quad, x, y)
+end
+
+function tile:set_destination(filename, x, y)
+  self.destination = {
+    filename = filename,
+    x = x,
+    y = y
+  }
 end
 
 -- Constructor.
